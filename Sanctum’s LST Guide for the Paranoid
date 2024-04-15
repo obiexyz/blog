@@ -1,0 +1,63 @@
+# Sanctum’s LST Guide for the Paranoid
+
+by Obi3 ([Twitter](https://twitter.com/obiexyz))
+
+### TLDR;
+
+**The Problem:** Solana users don’t trust LSTs because they think they work the same as on Ethereum.
+**The Reality:** Solana LSTs are fundamentally different from Ethereum’s. On Solana LSTs are actual, real staked SOL with no middle man and have significantly less risk. You can always directly redeem it for SOL on the blockchain.
+
+
+____________________________________________________________
+
+Most Solana users automatically write off Liquid Staking (LSTs) due to some misperceived risk centered around “Smart Contract” and “Counter Party” risk. This is why only 5.4% of staked SOL is in the form of LSTs. These are funds where people prioritize ownership/safety over yield. (I need to have full ownership & control over them, not relying on another entity). But Solana LSTs (and especially Single Validator Stake Pools) are designed for mainstream adoption (same as SPLs), and may even be a better alternative than holding un-staked SOL or traditional stake.
+
+## Solana LSTs are fundamentally different from Ethereum LSTs
+
+### LSTs on Ethereum are wrapped tokens that represent your ownership from overall stake
+
+Ethereum does not support a native delegation mechanism for LSTs. As a result Ethereum’s LST programs were built by 3rd parties that are responsible for building the smart contract, maintaining node operators, ensuring the wrapped token is tied to staked funds. They are also responsible for building the mechanism to convert the wrapped LSTs tokens to unstaked ETH.
+
+Ethereum “middle men” can operate nodes (meaning who is picked to be a validator) in 3 ways:
+
+* Centralized node operators (Coinbase cbETH): Coinbase controls available validators. Coinbase is the counterparty.
+* Permissioned node operators (LidoDAO stETH): LidoDAO controls available validators. LidoDAO is the counterparty.
+* Permissionless node operators (Rocketpool rETH): Anyone can be a validator (using Rocketpool). Rocketpool is the counterparty.
+
+*Read more on [Helius](https://www.helius.dev/blog/lsts-on-solana#lst-constructions-on-ethereum)*
+
+### LSTs on Solana are actual, real stake
+
+LSTs on Solana are tokens that interact directly with a permissionless stake pool associated with a designated validator. This means that there is no middle man influencing control over your funds. The LST program was developed directly by Solana Labs as a core native capability of Solana. Your LST is actual, real stake, unlike on Ethereum where it is a wrapped token backed by stake and maintained by a 3rd party.
+
+
+ 
+> ## The single-validator stake pool program is an SPL program that enables liquid staking with zero fees, no counterparty, and 100% capital efficiency.
+
+*Source: [Solana Labs Docs](https://spl.solana.com/single-pool)*
+
+
+ 
+For example: laineSOL is directly tied to the Laine validator. When you swap from laineSOL to compassSOL the SOL delegation is actually transferred from Laine to Compass (when the epoch ends). This isn’t just a token swap, but a change in delegating tokens to validators.
+
+
+ 
+*Note: Sanctum’s $INF does not represent an LST, but a liquidity pool for all of Sanctum’s listed LSTs, and uses a different smart contract altogether (still audited by Sec3).*
+
+## Types of Risk:
+
+|    | Smart Contract Risk | Counter Party Risk | Market Risk |
+|----|----|----|----|
+| **Definition** | *Can a hacker potentially exploit the LST Smart Contact to steal my staked SOL?* | *Does Sanctum have the ability to touch/control by LST? What happens if they disappear tomorrow?* | *Is there enough liquidity for me to convert to SOL? Does the LST de-peg from SOL?* |
+| **Solution** | [Single Validator Program](https://spl.solana.com/single-pool) is a “basic” version of [Stake Pool program](https://spl.solana.com/stake-pool) (which has been audited 9 times & live for several years with mSOL & jitoSOL) with 80% less code to have reduced execution risk.  \n  \n The program was built by Solana Labs, same as the SPL token standard and deployed directly on the blockchain, not a 3rd party.  \n  \n The stripped down Single Validator Program was still audited another 3 times. | You can always redeem your LST for SOL directly on the blockchain with no intermediate party using the CLI once the epoch ends (just like real stake).  \n  \n However, the easiest way to redeem it immediately is to use [www.unstake.it](http://www.unstake.it).  \n  \n For example - when stSOL was sunsetted the team stopped supporting the LST and responding to users. However, users could still redeem stSOL for SOL without the Lido team. No matter what happens your LST is convertible back to SOL. | Sanctum’s magic is they provide a single, shared reserve pool for all the LSTs to minimize that risk. The reserve refreshes every 2.5 days (each epoch).  \n  \n Today you can swap tens of millions of dollars in LSTs to SOL in a single transaction with less than 0.5% slippage - and the threshold continues to increase as more individuals use LSTs on Sanctum.  \n  \n Usually it’s <0.1% slippage. We aren’t even talking about de-pegging, we’re talking about slippage in a single transaction. We’re no longer under the mercy of 1,000 separate, fragmented liquidity pools.  \n  \n Even if there were to be a black swan de-peg (like with FTX) you can unstake your LST to raw SOL and wait until the end of the epoch (same as regular staking) to avoid taking a loss with the exchange - also called delayed unstake. |
+
+### Conclusion
+
+1. LSTs don’t represent your stake. They are actual, real, stake.
+   a. The underlying SOL is delegated, not transferred
+   b. You can always redeem it no matter what happens
+2. The “smart contract risk” people are constantly referring to isn’t a DEX or Liquidity Pool, it’s a native program that’s part of the ecosystem and developed by Solana Labs (same as SPLs and Token Extensions)
+
+
+ 
+*Note: Thanks to [Sanctum](https://sanctum.so/)’s [Jay](https://twitter.com/eggpanned) and [FP Lee](https://twitter.com/soleconomist) for feedback and review.*
